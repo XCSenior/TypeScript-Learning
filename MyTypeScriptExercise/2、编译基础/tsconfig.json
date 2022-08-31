@@ -13,16 +13,35 @@
         "hello.ts"
     ],
 
-    /* ts编译器最重要的配置选项 */
+    /**
+    * !ts编译器最重要的配置选项
+    */
     "compilerOptions": {
         "target": "es6",  //target指定被编译的ES版本
-        "module": "es6",  //那种JS模块化规范
+        "module": "es6",  //编译后代码使用的JS模块化规范
         "lib": ["es6","DOM"],  //指定代码运行时所包含的库(宿主环境)  ,一般不动它
 
         "outDir": "./dist",   //指定编译后JS文件放在哪里
 
         /* 将编译的JS全局作用域代码合并为1个文件,对模块化不太管用,需要指定amd或system模块化 */
         "outFile": "./dist/all.js",
+
+        /*
+        *指定代码根目录,默认情况下编译后文件的目录结构会以最长的公共目录为根目录,rootDir可以手动指定根目录
+        */"rootDir": "./src",
+
+        /* 是否对js编译、检查 */
+        "allowJs": false,
+        "checkJs": false,
+
+        /* 移除注释 */
+        "removeComments": false,
+        /* 不对代码进行编译 */
+        "noEmit": false,
+        /* 生成sourceMap */
+        "sourceMap": false,
+
+        /* 严格检查 */
 
     }
 
