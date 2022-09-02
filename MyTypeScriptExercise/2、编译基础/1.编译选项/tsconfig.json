@@ -36,12 +36,28 @@
 
         /* 移除注释 */
         "removeComments": false,
-        /* 不对代码进行编译 */
+        /* 不对代码进行编译，不生成编译后的文件，单纯检查语法 */
         "noEmit": false,
+
+        /* 当有错误时，不生成编译后的文件 */
+        "noEmitOnError": false,
+
+        /* 严格检查模式，编译后js文件使用严格模式，执行性能好一些，默认false */
+        "alwaysStrict": false,
+        /* 不允许隐式any类型 */
+        "noImplicitAny": false,
+        /* 不允许不明确具体的this，是实例对象还是全局对象什么的 */
+        "noImplicitThis": false,
+        /* 严格检查空值，对有可能为null的值报错 */
+        "strictNullChecks": false,
+
+        /* 所有严格检查总开关 */
+        "strict": false,
+
+        /* ............ */
+
         /* 生成sourceMap */
         "sourceMap": false,
-
-        /* 严格检查 */
 
     }
 
