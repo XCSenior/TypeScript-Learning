@@ -1,4 +1,6 @@
 const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     // 指定入口文件
@@ -24,6 +26,22 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
+    },
+
+    /* 配置webpack插件 */
+    plugins: [
+        /* 清除dist目录 */
+        new CleanWebpackPlugin(),
+        /* 自动生成HTML文件并且引入相关资源 */
+        new HTMLWebpackPlugin({
+            title: '这个是一个自定义的Title',
+            template: './src/index.html'
+        })
+    ],
+
+    /* 设置引用模块 */
+    resolve: {
+        extensions: ['.ts', '.js']
     }
 
 }
