@@ -10,7 +10,12 @@ module.exports = {
     output: {
         // 指定打包后的目录
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        /* 打包兼容环境 */
+        // 告诉webpack,为了兼容老版本浏览器,不要给自执行函数加箭头函数
+        environment: {
+            arrowFunction: false
+        }
     },
 
     // 指定webpack打包的loader
@@ -21,7 +26,36 @@ module.exports = {
                 // 指定规则
                 test: /\.ts$/,
                 // 要使用的loader
-                use: 'ts-loader',
+                use: [ // 从后往前执行
+                    /* 配置babel-loader */
+                    {
+                        // 指定加载器
+                        loader: 'babel-loader',
+                        // 设置babel
+                        options: {
+                            // 设置预定义环境
+                            presets: [
+                                [
+                                    // 指定环境插件
+                                    "@babel/preset-env",
+                                    // 配置信息
+                                    {
+                                        /* 指定要兼容的浏览器版本 */
+                                        targets: {
+                                            "chrome": "58",
+                                            "ie": "11"
+                                        },
+                                        /* 指定corejs版本 */
+                                        "corejs": "3",
+                                        /* 使用corejs方法: usage按需加载 */
+                                        "useBuiltIns": "usage"
+                                    }
+                                ]
+                            ]
+                        }
+                    },
+                    'ts-loader'
+                ],
                 // 指定要排除的文件夹
                 exclude: /node_modules/
             }
