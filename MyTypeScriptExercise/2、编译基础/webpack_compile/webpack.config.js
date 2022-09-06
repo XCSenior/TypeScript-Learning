@@ -39,7 +39,7 @@ module.exports = {
         })
     ],
 
-    /* 设置引用模块 */
+    /* 设置引用模块,使用了模块化的ts,需要设置此项 */
     resolve: {
         extensions: ['.ts', '.js']
     }
