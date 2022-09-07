@@ -4,11 +4,11 @@
     class Animal {
         name: string;
         age: number;
-        constructor(name:string, age:number) {
+        constructor(name: string, age: number) {
             this.name = name;
             this.age = age;
         }
-        sayHello() : void {
+        sayHello(): void {
             console.log("动物在叫");
         }
     }
@@ -28,11 +28,43 @@
         }
     }
     class Cat extends Animal {
-        
+
     }
     const dog = new Dog("旺财", 5);
     const cat = new Cat("咪咪", 3);
     dog.sayHello()
     cat.sayHello()
 
+})();
+
+(() => {
+    /**
+     *  !super:在类方法中表示当前类的父类,相当于在父类中的this
+     *      在构造函数中，相当于父类的构造函数
+     * */
+    class Animal {
+        name: string;
+        constructor(name: string) {
+            this.name = name;
+        }
+        sayHello(): void {
+            console.log("动物在叫~~");
+        }
+    }
+
+    class Dog extends Animal {
+        age: number;
+        constructor(name: string, age: number) {
+            /* 子类没有写构造函数，自动掉super()，
+            *   如果子类中写了构造函数，则必须调用父类的构造函数
+            */
+            super(name);
+            this.age = age;
+        }
+        sayHello(): void {
+            super.sayHello();
+        }
+    }
+    const dog = new Dog("旺财", 3);
+    dog.sayHello()
 })();
