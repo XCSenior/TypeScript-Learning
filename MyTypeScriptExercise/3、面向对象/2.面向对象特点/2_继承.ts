@@ -70,3 +70,28 @@
     const dog = new Dog("旺财", 3);
     dog.sayHello()
 })();
+
+/* 抽象类abstract */
+(() => {
+    /* 抽象类：指专门被其他类继承的类，无法被用来创建对象 */
+    // 例如我们不希望有人去创建Animal类的对象，Animal类只需要给其他动物类继承即可
+    // 抽象类中可以添加抽象方法,抽象方法只能写在抽象类中,没有实现方法体,并且子类必须实现重写
+    abstract class Animal {
+        name: string;
+        constructor(name: string) {
+            this.name = name;
+        }
+
+        // 由于动物叫声都不一样，抽象类的实例方法没什么意义，需要定义抽象方法，强迫动物子类实现sayHello
+        abstract sayHello(): void;
+    }
+
+    class Dog extends Animal {
+        sayHello(): void {
+            console.log("汪汪汪");
+        }
+    }
+    const dog = new Dog("旺财");
+    dog.sayHello()
+
+})();
