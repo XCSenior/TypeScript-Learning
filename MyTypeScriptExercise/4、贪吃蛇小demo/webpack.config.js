@@ -58,6 +58,30 @@ module.exports = {
                 ],
                 // 指定要排除的文件夹
                 exclude: /node_modules/
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    { // 引入postcss-loader，对刚转换成的css进行处理
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        "postcss-preset-env",
+                                        {
+                                            // 兼容每种浏览器的最新2个版本,例如ie10、ie11
+                                            browsers: "last 2 versions"
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    "less-loader"
+                ]
             }
         ]
     },
@@ -68,7 +92,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         /* 自动生成HTML文件并且引入相关资源 */
         new HTMLWebpackPlugin({
-            title: '这个是一个自定义的Title',
+            title: '贪吃snake(webpack)',
             template: './src/index.html'
         })
     ],
