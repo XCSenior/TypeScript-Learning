@@ -14,7 +14,8 @@ module.exports = {
         /* 打包兼容环境 */
         // 告诉webpack,为了兼容老版本浏览器,不要给自执行函数加箭头函数
         environment: {
-            arrowFunction: false
+            arrowFunction: false,
+            const: false
         }
     },
 
