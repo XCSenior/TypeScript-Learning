@@ -1,4 +1,4 @@
-class Snake {
+export default class Snake {
     // 表示snack head的HTML的元素
     head: HTMLElement;
     bodies: HTMLCollection;
