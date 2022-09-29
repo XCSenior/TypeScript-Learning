@@ -15,12 +15,29 @@ export default class Snake {
         return this.head.offsetLeft;
     };
     public set X(value : number) {
+        /* 如果新值和旧值相同，则直接返回不再修改属性 */
+        if (this.X === value) {
+            return;
+        }
+        /* X的值是0——290之间 */
+        if (value < 0 || value > 290) {
+            // 撞墙逻辑
+            throw new Error("蛇撞墙了！");
+        }
         this.head.style.left = value + 'px';
     };
     public get Y(){
         return this.head.offsetTop;
     };
     public set Y(value : number) {
+        if (this.Y === value) {
+            return;
+        }
+        /* Y的值是0——290之间 */
+        if (value < 0 || value > 290) {
+            // 撞墙逻辑
+            throw new Error("蛇撞墙了！");
+        }
         this.head.style.top = value + 'px';
     };
 

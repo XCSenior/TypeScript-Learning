@@ -58,9 +58,15 @@ export default class GameControl {
                 break;
         }
 
-        // 修改蛇的X和Y值
-        this.snake.X = X;
-        this.snake.Y = Y;
+        try {
+            // 修改蛇的X和Y值
+            this.snake.X = X;
+            this.snake.Y = Y;
+        } catch (e: any) {
+            // 进入到catch，说明出现了异常，游戏结束，弹出一个提示信息
+            alert(e.message + "Game Over!");
+            this.isLive = false;
+        }
 
         /* 随着等级越来越高, snake的速度越来越高 */
         this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
