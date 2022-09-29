@@ -68,7 +68,22 @@ export default class GameControl {
             this.isLive = false;
         }
 
+        /* 检查蛇是否吃到了食物 */
+        this.checkEat(X, Y)
+
         /* 随着等级越来越高, snake的速度越来越高 */
         this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
+    }
+
+    /* 定义方法，检查蛇是否吃到食物 */
+    checkEat(X: number, Y: number) {
+        if (X === this.food.X && Y === this.food.Y) {
+            // 食物位置发生改变
+            this.food.change();
+            // 分数增加
+            this.scorePanel.addScore();
+            // 蛇要增加一节
+            this.snake.addBody();
+        }
     }
 }
