@@ -14,10 +14,20 @@ export default class Snake {
     public get X(){
         return this.head.offsetLeft;
     };
-    public set X(value : number) {
+    public set X(value : number) { // 修改X是水平坐标，左右移动
         /* 如果新值和旧值相同，则直接返回不再修改属性 */
         if (this.X === value) {
             return;
+        }
+        /* 不能掉头的判断 */
+        if (this.bodies[1] && (this.bodies[1] as HTMLElement).offsetLeft === value) {
+            // 1、如果拥有第二节身体的情况下，不能掉头
+            // 2、如果想掉头，那就让蛇反方向运动
+            if (value > this.X) { // 向右走，发生掉头应该使蛇继续向左走
+                value = this.X - 10;
+            } else if (value < this.X) {
+                value = this.X + 10;
+            }
         }
         /* X的值是0——290之间 */
         if (value < 0 || value > 290) {
@@ -31,9 +41,19 @@ export default class Snake {
     public get Y(){
         return this.head.offsetTop;
     };
-    public set Y(value : number) {
+    public set Y(value : number) { // 修改Y是垂直坐标
         if (this.Y === value) {
             return;
+        }
+        /* 不能掉头的判断 */
+        if (this.bodies[1] && (this.bodies[1] as HTMLElement).offsetTop === value) {
+            // 1、如果拥有第二节身体的情况下，不能掉头
+            // 2、如果想掉头，那就让蛇继续按原来的方向运动
+            if (value > this.Y) { // 向下走，发生掉头应该使蛇继续向上走
+                value = this.Y - 10;
+            } else if (value < this.Y) {
+                value = this.Y + 10;
+            }
         }
         /* Y的值是0——290之间 */
         if (value < 0 || value > 290) {
